@@ -1,12 +1,18 @@
 import { ThemeProvider } from '@/components/theme-provider';
+import { BrowserRouter, Route, Routes } from 'react-router';
 
-import ThemeToggle from './components/ThemeToggle/ThemeToggle';
+import Home from '@/pages/Home';
+import NotFoundPage from '@/pages/NotFoundPage';
 
 function App() {
   return (
     <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
-      <ThemeToggle />
-      Hello, world!
+      <BrowserRouter>
+        <Routes>
+          <Route index element={<Home />} />
+          <Route path='*' element={<NotFoundPage />} />
+        </Routes>
+      </BrowserRouter>
     </ThemeProvider>
   );
 }
