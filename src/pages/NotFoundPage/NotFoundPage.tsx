@@ -3,8 +3,8 @@ import { Link } from 'react-router';
 
 const NotFoundPage = () => {
   return (
-    <div className='h-screen flex flex-col text-center justify-center items-center gap-8'>
-      <div className='w-1/1  sm:w-1/3 flex mx-auto'>
+    <div className='mt-[20svh] sm:mt-[15svh] flex flex-col text-center justify-center items-center place-content-center gap-8'>
+      <div className='w-80  sm:w-1/3 flex mx-auto'>
         <NotFoundIllustration />
       </div>
 

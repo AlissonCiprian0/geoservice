@@ -1,16 +1,20 @@
 import { ThemeProvider } from '@/components/theme-provider';
 import { BrowserRouter, Route, Routes } from 'react-router';
 
-import Home from '@/pages/Home';
+import HomePage from '@/pages/HomePage';
 import NotFoundPage from '@/pages/NotFoundPage';
+import RootLayout from '@/components/RootLayout';
 
 function App() {
   return (
     <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
       <BrowserRouter>
         <Routes>
-          <Route index element={<Home />} />
-          <Route path='*' element={<NotFoundPage />} />
+          <Route element={<RootLayout.Root />}>
+            <Route path='/' element={<HomePage />} />
+
+            <Route path='*' element={<NotFoundPage />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
