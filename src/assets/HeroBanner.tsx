@@ -11,8 +11,8 @@ const HeroBanner = (
   >
     <defs>
       <linearGradient id='hero-bg-gradient' x1='0%' y1='0%' x2='100%' y2='100%'>
-        <stop offset='0%' stopColor={props.dark ? '#1a1a1a' : '#F9FAFB'} />
-        <stop offset='100%' stopColor={props.dark ? '#0e0e0e' : '#E5E7EB'} />
+        <stop offset='0%' stopColor={props.dark ? '#252542' : '#F9FAFB'} />
+        <stop offset='100%' stopColor={props.dark ? '#141418' : '#E5E7EB'} />
       </linearGradient>
       <linearGradient id='hero-pin-gradient' x1='0%' y1='0%' x2='0%' y2='100%'>
         <stop offset='0%' stopColor='#60A5FA' />
