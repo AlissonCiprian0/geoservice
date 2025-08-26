@@ -2,7 +2,14 @@ import Logo from '@/assets/Logo';
 import { Link } from 'react-router';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 import ThemeToggle from '@/components/ThemeToggle';
+import LoginForm from './components/LoginForm';
+import RegisterForm from './components/RegisterForm';
 
 import { useTheme } from '@/components/theme-provider';
 
@@ -25,15 +32,31 @@ const Header = () => {
           )}
           <div className='ml-auto flex items-center'>
             <div className='flex items-center gap-2 h-7 mr-2'>
-              <Button variant='ghost' size='sm' className='cursor-pointer'>
-                Entrar
-              </Button>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button variant='ghost' size='sm' className='cursor-pointer'>
+                    Entrar
+                  </Button>
+                </PopoverTrigger>
+
+                <PopoverContent className='w-75'>
+                  <LoginForm />
+                </PopoverContent>
+              </Popover>
 
               <Separator orientation='vertical' />
 
-              <Button variant='ghost' size='sm' className='cursor-pointer'>
-                Cadastrar
-              </Button>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button variant='ghost' size='sm' className='cursor-pointer'>
+                    Cadastrar
+                  </Button>
+                </PopoverTrigger>
+
+                <PopoverContent className='w-75'>
+                  <RegisterForm />
+                </PopoverContent>
+              </Popover>
             </div>
             <ThemeToggle />
           </div>
