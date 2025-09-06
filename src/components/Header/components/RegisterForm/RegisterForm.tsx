@@ -1,5 +1,4 @@
 import FloatingLabelInput from '@/components/FloatingLabelInput';
-import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -7,27 +6,12 @@ import {
   FormItem,
   FormMessage,
 } from '@/components/ui/form';
+import LoadingButton from '@/components/LoadingButton';
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import { formSchema } from './constants';
+import useRegisterForm from './useRegisterForm';
 
 const RegisterForm = () => {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      email: '',
-      password: {
-        password: '',
-        confirm: '',
-      },
-    },
-  });
-
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-  }
+  const { form, onSubmit, isPending } = useRegisterForm();
 
   return (
     <Form {...form}>
@@ -79,14 +63,15 @@ const RegisterForm = () => {
           )}
         />
 
-        <Button
+        <LoadingButton
           variant='default'
           size='lg'
           className='cursor-pointer w-full'
           type='submit'
+          loading={isPending}
         >
           Criar conta
-        </Button>
+        </LoadingButton>
       </form>
     </Form>
   );

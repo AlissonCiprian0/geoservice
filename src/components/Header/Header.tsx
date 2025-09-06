@@ -1,5 +1,5 @@
-import Logo from '@/assets/Logo';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import {
@@ -11,11 +11,21 @@ import ThemeToggle from '@/components/ThemeToggle';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 
+import Logo from '@/assets/Logo';
+
 import { useTheme } from '@/components/theme-provider';
+import { useAuthStore } from '@/store/authStore';
 
 const Header = () => {
   const { theme } = useTheme();
-  const logged = false;
+
+  const navigate = useNavigate();
+  const { isAuthenticated, logout } = useAuthStore();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
 
   return (
     <header className='sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60'>
@@ -24,42 +34,66 @@ const Header = () => {
           <Logo height={35} dark={theme === 'dark'} />
         </Link>
 
-        <nav className='w-full flex items-center gap-2 max-sm:hidden'>
-          {logged && (
-            <Button asChild variant='ghost'>
-              <Link to='/'>Início</Link>
-            </Button>
+        <nav className='w-full flex items-center gap-2 '>
+          {isAuthenticated && (
+            <>
+              <Button asChild variant='ghost'>
+                <Link to='/'>Início</Link>
+              </Button>
+
+              <div className='ml-auto flex items-center'>
+                <Button
+                  variant='ghost'
+                  size='sm'
+                  className='cursor-pointer'
+                  onClick={handleLogout}
+                >
+                  Sair
+                </Button>
+              </div>
+            </>
           )}
-          <div className='ml-auto flex items-center'>
-            <div className='flex items-center gap-2 h-7 mr-2'>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button variant='ghost' size='sm' className='cursor-pointer'>
-                    Entrar
-                  </Button>
-                </PopoverTrigger>
 
-                <PopoverContent className='w-75'>
-                  <LoginForm />
-                </PopoverContent>
-              </Popover>
+          {!isAuthenticated && (
+            <div className='ml-auto flex items-center'>
+              <div className='flex items-center gap-2 h-7 mr-2'>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant='ghost'
+                      size='sm'
+                      className='cursor-pointer'
+                    >
+                      Entrar
+                    </Button>
+                  </PopoverTrigger>
 
-              <Separator orientation='vertical' />
+                  <PopoverContent className='w-75'>
+                    <LoginForm />
+                  </PopoverContent>
+                </Popover>
 
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button variant='ghost' size='sm' className='cursor-pointer'>
-                    Cadastrar
-                  </Button>
-                </PopoverTrigger>
+                <Separator orientation='vertical' />
 
-                <PopoverContent className='w-75'>
-                  <RegisterForm />
-                </PopoverContent>
-              </Popover>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant='ghost'
+                      size='sm'
+                      className='cursor-pointer'
+                    >
+                      Cadastrar
+                    </Button>
+                  </PopoverTrigger>
+
+                  <PopoverContent className='w-75'>
+                    <RegisterForm />
+                  </PopoverContent>
+                </Popover>
+              </div>
+              <ThemeToggle />
             </div>
-            <ThemeToggle />
-          </div>
+          )}
         </nav>
       </div>
     </header>

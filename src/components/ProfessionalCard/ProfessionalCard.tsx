@@ -11,23 +11,23 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { AvatarImage } from '@radix-ui/react-avatar';
 import Stars from './components/Stars';
 
-type ProfessionalCardProps = {
+type Professional = {
   name: string;
   profession: string;
   rating: number;
-  imageUrl?: string;
   imageFallback: string;
+  imageUrl?: string;
   description?: string;
 };
 
-const ProfessionalCard = ({
-  name,
-  profession,
-  rating,
-  imageUrl,
-  imageFallback,
-  description,
-}: ProfessionalCardProps) => {
+type ProfessionalCardProps = {
+  professional: Professional;
+};
+
+const ProfessionalCard = ({ professional }: ProfessionalCardProps) => {
+  const { name, profession, rating, imageUrl, imageFallback, description } =
+    professional;
+
   return (
     <Card className='relative'>
       <CardHeader className='flex max-[1300px]:flex-col'>
