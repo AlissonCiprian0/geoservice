@@ -1,5 +1,5 @@
 import FloatingLabelInput from '@/components/FloatingLabelInput';
-import { Button } from '@/components/ui/button';
+import LoadingButton from '@/components/LoadingButton';
 import {
   Form,
   FormControl,
@@ -10,7 +10,7 @@ import {
 import useLoginForm from './useLoginForm';
 
 const LoginForm = () => {
-  const { form, onSubmit } = useLoginForm();
+  const { form, onSubmit, isPending } = useLoginForm();
 
   return (
     <Form {...form}>
@@ -45,14 +45,15 @@ const LoginForm = () => {
           )}
         />
 
-        <Button
+        <LoadingButton
           variant='default'
           size='lg'
           className='cursor-pointer w-full'
           type='submit'
+          loading={isPending}
         >
           Entrar
-        </Button>
+        </LoadingButton>
       </form>
     </Form>
   );
