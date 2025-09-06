@@ -8,7 +8,7 @@ const NotFoundPage = () => {
         <NotFoundIllustration />
       </div>
 
-      <Link to='/' className='text-white hover:underline'>
+      <Link to='/' className='text-black dark:text-white hover:underline'>
         Voltar para a página inicial
       </Link>
     </div>

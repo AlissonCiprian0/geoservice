@@ -3,12 +3,7 @@ import { Link } from 'react-router';
 const Logo = (props: React.SVGProps<SVGSVGElement> & { dark?: boolean }) => {
   return (
     <Link to='/'>
-      <svg
-        xmlns='http://www.w3.org/2000/svg'
-        viewBox='0 0 400 100'
-        width='180'
-        {...props}
-      >
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 100' {...props}>
         <defs>
           <linearGradient id='pin-gradient' x1='0%' y1='0%' x2='0%' y2='100%'>
             <stop offset='0%' stopColor='#F87171' />

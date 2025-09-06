@@ -57,10 +57,24 @@ const NotFoundIllustration = (props: React.SVGProps<SVGSVGElement>) => (
 
     {/* Texto */}
     <g textAnchor='middle' fontFamily="'Inter', sans-serif">
-      <text x='400' y='120' fontSize='120' fontWeight='bold' fill='#ffffff'>
+      <text
+        x='400'
+        y='120'
+        fontSize='120'
+        fontWeight='bold'
+        fill='#ffffff'
+        className='fill-black dark:fill-amber-50'
+      >
         404
       </text>
-      <text x='400' y='180' fontSize='32' fontWeight='500' fill='#ffffff'>
+      <text
+        x='400'
+        y='180'
+        fontSize='32'
+        fontWeight='500'
+        fill='#ffffff'
+        className='fill-black dark:fill-amber-50'
+      >
         Página Não Encontrada
       </text>
       <text x='400' y='550' fontSize='18' fill='#babdc3' fontStyle='italic'>
